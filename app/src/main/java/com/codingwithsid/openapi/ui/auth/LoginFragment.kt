@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.codingwithsid.openapi.R
+import com.codingwithsid.openapi.models.AuthToken
 import com.codingwithsid.openapi.ui.auth.state.LoginFields
 import com.codingwithsid.openapi.util.ApiEmptyResponse
 import com.codingwithsid.openapi.util.ApiErrorResponse
@@ -29,6 +30,15 @@ class LoginFragment : BaseAuthFragment() {
         Log.d(TAG, "LoginFragment: ${viewModel}")
 
         subscribeObservers()
+
+        login_button.setOnClickListener {
+            viewModel.setAuthToken(
+                AuthToken(
+                    1,
+                    "gdfngidfng4nt43n43jn34jn"
+                )
+            )
+        }
     }
 
 
@@ -52,6 +62,7 @@ class LoginFragment : BaseAuthFragment() {
     }
 
 }
+
 
 
 

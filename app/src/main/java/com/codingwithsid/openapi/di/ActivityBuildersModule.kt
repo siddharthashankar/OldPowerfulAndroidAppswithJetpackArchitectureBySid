@@ -5,6 +5,7 @@ import com.codingwithsid.openapi.di.auth.AuthModule
 import com.codingwithsid.openapi.di.auth.AuthScope
 import com.codingwithsid.openapi.di.auth.AuthViewModelModule
 import com.codingwithsid.openapi.ui.auth.AuthActivity
+import com.codingwithsid.openapi.ui.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -16,4 +17,7 @@ abstract class ActivityBuildersModule {
         modules = [AuthModule::class, AuthFragmentBuildersModule::class, AuthViewModelModule::class]
     )
     abstract fun contributeAuthActivity(): AuthActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeMainActivity(): MainActivity
 }
