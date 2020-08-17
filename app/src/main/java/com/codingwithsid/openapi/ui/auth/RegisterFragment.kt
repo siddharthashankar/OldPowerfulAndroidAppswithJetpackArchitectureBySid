@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.codingwithsid.openapi.R
+import com.codingwithsid.openapi.ui.auth.state.AuthStateEvent
 import com.codingwithsid.openapi.ui.auth.state.RegistrationFields
 import com.codingwithsid.openapi.util.ApiEmptyResponse
 import com.codingwithsid.openapi.util.ApiErrorResponse
@@ -28,6 +29,9 @@ class RegisterFragment : BaseAuthFragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "RegisterFragment: ${viewModel}")
 
+        register_button.setOnClickListener {
+            register()
+        }
         subscribeObservers()
     }
 
@@ -40,6 +44,17 @@ class RegisterFragment : BaseAuthFragment() {
                 it.registration_confirm_password?.let{input_password_confirm.setText(it)}
             }
         })
+    }
+
+    fun register(){
+        viewModel.setStateEvent(
+            AuthStateEvent.RegisterAttemptEvent(
+                input_email.text.toString(),
+                input_username.text.toString(),
+                input_password.text.toString(),
+                input_password_confirm.text.toString()
+            )
+        )
     }
 
     override fun onDestroyView() {
